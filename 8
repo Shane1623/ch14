@@ -1,1 +1,33 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class Main {
+    public static void main(String[] args) {
+        try {
+            // 使用 BufferedReader 讀取 proverb.txt 檔案
+            BufferedReader bufferedReader = new BufferedReader(new FileReader("proverb.txt"));
+
+            String line;
+            StringBuilder content = new StringBuilder();
+
+            // 逐行讀取檔案內容
+            while ((line = bufferedReader.readLine()) != null) {
+                // 略過指定字串
+                if (!line.contains("You can't be perfect but you be unique.")) {
+                    content.append(line).append("\n");
+                }
+            }
+
+            // 關閉 BufferedReader
+            bufferedReader.close();
+
+            // 印出檔案內容
+            System.out.println("檔案內容（略過指定字串）：\n" + content.toString());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
 
