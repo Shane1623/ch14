@@ -1,1 +1,26 @@
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class Main {
+    public static void main(String[] args) {
+        // 定義字元陣列 hi
+        char[] hi = {'H', 'e', 'l', 'l', 'o', ' ', 'J', 'a', 'v', 'a'};
+
+        try {
+            // 使用 FileWriter 寫入檔案
+            FileWriter fileWriter = new FileWriter("hello.txt");
+
+            // 將字元陣列 hi 寫入檔案
+            fileWriter.write(hi);
+
+            // 關閉 FileWriter
+            fileWriter.close();
+
+            System.out.println("成功將字元陣列寫入檔案 hello.txt");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
 
