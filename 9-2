@@ -1,0 +1,61 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class MergeTextFiles {
+    public static void main(String[] args) {
+        // 讀取 aaa.txt 與 bbb.txt 的內容
+        String contentA = readTextFile("aaa.txt");
+        String contentB = readTextFile("bbb.txt");
+
+        // 合併內容
+        String mergedContent = contentA + "\n" + contentB;
+
+        // 儲存合併後的內容到 ccc.txt
+        writeTextFile("ccc.txt", mergedContent);
+
+        System.out.println("合併並儲存成功，請查看 ccc.txt 檔案。");
+    }
+
+    private static String readTextFile(String fileName) {
+        StringBuilder content = new StringBuilder();
+
+        try {
+            // 使用 BufferedReader 讀取文字檔
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));
+
+            String line;
+
+            // 逐行讀取檔案內容並存入 StringBuilder
+            while ((line = bufferedReader.readLine()) != null) {
+                content.append(line).append("\n");
+            }
+
+            // 關閉 BufferedReader
+            bufferedReader.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return content.toString();
+    }
+
+    private static void writeTextFile(String fileName, String content) {
+        try {
+            // 使用 BufferedWriter 寫入文字檔
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileName));
+
+            // 寫入合併後的內容
+            bufferedWriter.write(content);
+
+            // 關閉 BufferedWriter
+            bufferedWriter.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
