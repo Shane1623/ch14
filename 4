@@ -1,1 +1,50 @@
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+
+public class Main {
+    public static void main(String[] args) {
+        try {
+            // (a) 利用 FileReader 讀取 donkey.txt，並列印出檔案內容
+            FileReader fileReader = new FileReader("donkey.txt", StandardCharsets.UTF_8);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            String line;
+            int charCount = 0;
+
+            while ((line = bufferedReader.readLine()) != null) {
+                System.out.println(line);
+                charCount += line.length();
+            }
+
+            System.out.println("讀取的字元數: " + charCount);
+
+            bufferedReader.close();
+
+            // (b) 計算中文字數量是否相符
+            String content = "我有一隻小毛驢\n我從來也不騎\n有一天我心血來潮騎著去趕集";
+            int chineseCharCount = countChineseCharacters(content);
+
+            System.out.println("程式中計算的中文字數: " + chineseCharCount);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // 輔助方法：計算中文字數量
+    private static int countChineseCharacters(String content) {
+        int count = 0;
+
+        for (int i = 0; i < content.length(); i++) {
+            char c = content.charAt(i);
+            if (Character.UnicodeBlock.of(c) == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+}
 
