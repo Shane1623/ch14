@@ -1,1 +1,42 @@
+import java.io.*;
+
+public class Main {
+    public static void main(String[] args) {
+        // 定義字元陣列 hi
+        char[] hi = {'H', 'e', 'l', 'l', 'o', ' ', 'J', 'a', 'v', 'a'};
+
+        try {
+            // 使用 FileWriter 以及 BufferedWriter 寫入檔案
+            FileWriter fileWriter = new FileWriter("hello.txt", true); // 使用 true 表示附加寫入
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+            // 將字元陣列 hi 寫入檔案
+            bufferedWriter.write(hi);
+            bufferedWriter.newLine();
+
+            // 附加寫入字串 "Welcome!"
+            bufferedWriter.write("Welcome!");
+
+            // 關閉 BufferedWriter
+            bufferedWriter.close();
+
+            System.out.println("成功將字元陣列與字串附加寫入檔案 hello.txt");
+
+            // 讀取檔案並印出整個檔案內容
+            FileReader fileReader = new FileReader("hello.txt");
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                System.out.println(line);
+            }
+
+            // 關閉 BufferedReader
+            bufferedReader.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
 
