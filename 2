@@ -1,1 +1,14 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("請輸入一個字串：");
+        String inputString = scanner.nextLine();
+
+        String upperCaseString = inputString.toUpperCase();
+        System.out.println("轉換成大寫後的字串： " + upperCaseString);
+    }
+}
 
